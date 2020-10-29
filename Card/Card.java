@@ -60,7 +60,7 @@ public class Card {
 			chr = generateCharacter();
 		}
 		
-		arrs.add(getChr() + " of " + getSymbol());
+		arrd.add(getChr() + " of " + getSymbol());
 	}
 
 	public String getSymbol() {
