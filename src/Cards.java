@@ -1,9 +1,9 @@
-package Card;
+package src;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Card {
+public class Cards {
 
 	private String symbol;
 	private String chr;
@@ -11,6 +11,8 @@ public class Card {
 	private ArrayList<String> arrs = new ArrayList<String>(); //possible symbols
 	private ArrayList<String> arrc = new ArrayList<String>(); //possible characters
 	private ArrayList<String> arrd = new ArrayList<String>(); //already chosen cards
+	private ArrayList<String> arrm = new ArrayList<String>(); //cards in the middle
+	private ArrayList<String> arrp = new ArrayList<String>(); //cards of player
 
 	private Random rnd = new Random();
 
@@ -49,18 +51,42 @@ public class Card {
 
 	}
 
-	public Card() {
+	public Cards() {
 		fillArrays();
+	}
 
-		symbol = generateSymbol();
-		chr = generateCharacter();
+	public void generateMiddle(){
+		for (int i = 0; i < 5; i++) {
 
-		while(sameCard()) {
 			symbol = generateSymbol();
 			chr = generateCharacter();
+
+			while (sameCard()) {
+				symbol = generateSymbol();
+				chr = generateCharacter();
+			}
+
+			arrd.add(getChr() + " of " + getSymbol());
+			arrm.add(getChr() + " of " + getSymbol());
+
 		}
-		
-		arrd.add(getChr() + " of " + getSymbol());
+	}
+
+	public void generatePlayerCards(){
+		for (int i = 0; i < 2; i++) {
+
+			symbol = generateSymbol();
+			chr = generateCharacter();
+
+			while (sameCard()) {
+				symbol = generateSymbol();
+				chr = generateCharacter();
+			}
+
+			arrd.add(getChr() + " of " + getSymbol());
+			arrp.set(i,getChr() + " of " + getSymbol());
+
+		}
 	}
 
 	public String getSymbol() {
@@ -73,15 +99,18 @@ public class Card {
 
 	public boolean sameCard() {
 
-		for(int i = 0; i < arrs.size(); i++)
-			if(arrs.get(i).equals(getChr() + " of " + getSymbol()))
+		for(int i = 0; i < arrd.size(); i++)
+			if(arrd.get(i).equals(getChr() + " of " + getSymbol()))
 				return true;
 
 		return false;
 
 	}
 
-	public String toString(){return getChr() + " of " + getSymbol();}
+	public ArrayList<String> getPlayerCards(){return arrp;}
+
+	public ArrayList<String> getMiddle(){return arrm;}
+
 
 
 
