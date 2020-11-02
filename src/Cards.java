@@ -11,8 +11,6 @@ public class Cards {
 	private ArrayList<String> arrs = new ArrayList<String>(); //possible symbols
 	private ArrayList<String> arrc = new ArrayList<String>(); //possible characters
 	private ArrayList<String> arrd = new ArrayList<String>(); //already chosen cards
-	private ArrayList<String> arrm = new ArrayList<String>(); //cards in the middle
-	private ArrayList<String> arrp = new ArrayList<String>(); //cards of player
 
 	private Random rnd = new Random();
 
@@ -53,9 +51,14 @@ public class Cards {
 
 	public Cards() {
 		fillArrays();
+		generateMiddle();
+		generatePlayerCards();
 	}
 
-	public void generateMiddle(){
+	public ArrayList<String> generateMiddle(){
+
+		ArrayList<String> arrm = new ArrayList<String>(); //cards in the middle
+
 		for (int i = 0; i < 5; i++) {
 
 			symbol = generateSymbol();
@@ -70,9 +73,15 @@ public class Cards {
 			arrm.add(getChr() + " of " + getSymbol());
 
 		}
+
+		return arrm;
 	}
 
-	public void generatePlayerCards(){
+	public ArrayList<String> generatePlayerCards(){
+		ArrayList<String> arrp = new ArrayList<String>(); //cards of player
+		arrp.add("");
+		arrp.add("");
+
 		for (int i = 0; i < 2; i++) {
 
 			symbol = generateSymbol();
@@ -87,6 +96,7 @@ public class Cards {
 			arrp.set(i,getChr() + " of " + getSymbol());
 
 		}
+		return arrp;
 	}
 
 	public String getSymbol() {
@@ -107,9 +117,6 @@ public class Cards {
 
 	}
 
-	public ArrayList<String> getPlayerCards(){return arrp;}
-
-	public ArrayList<String> getMiddle(){return arrm;}
 
 
 

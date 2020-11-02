@@ -18,5 +18,15 @@ public class Middle {
         card5 = arrm.get(4);
 
     }
+
+    public String getCard1() {return card1;}
+
+    public String getCard2() {return card2;}
+
+    public String getCard3() {return card3;}
+
+    public String getCard4() {return card4;}
+
+    public String getCard5() {return card5;}
 }
 

@@ -8,6 +8,7 @@ public class Player {
     private String card2;
 
     public Player(ArrayList<String> arrp){
+
         card1 = arrp.get(0);
         card2 = arrp.get(1);
     }
